@@ -42,7 +42,6 @@ export default function Register() {
     e.preventDefault();
     signup(formData)
       .then(data => {
-        console.log({ "Signup OK": data });
         router.push('/login');
       })
       .catch(err => { });
@@ -50,7 +49,14 @@ export default function Register() {
 
   return (
     <WelcomeLayout
-      renderImage={<Image src={ImgRegister} priority className="rounded-xl w-full h-full object-cover" alt="Login" />}
+      renderImage={
+        <Image src={ImgRegister}
+          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="rounded-xl w-full h-full object-cover"
+          alt="Imagen de registro"
+        />
+      }
     >
       <div className='w-full rounded-xl bg-primary p-6'>
         <form onSubmit={handleSubmit}>

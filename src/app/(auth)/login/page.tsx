@@ -35,12 +35,20 @@ export default function Login() {
                 console.log({ "Login OK": user });
                 router.push('/restaurants');
             })
-            .catch(err => {});
+            .catch(err => { });
     };
 
     return (
         <WelcomeLayout
-            renderImage={<Image src={ImgLogin} priority className="rounded-xl w-full h-full object-cover" alt="Login" />}
+            renderImage={
+                <Image
+                    src={ImgLogin}
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="rounded-xl w-full h-full object-cover"
+                    alt="Imagen de inicio de sesión"
+                />
+            }
         >
             <div className='w-full rounded-xl bg-primary p-6'>
                 <form className='' onSubmit={handleSubmit}>

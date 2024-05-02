@@ -10,7 +10,15 @@ export default function Page() {
 
   return (
     <WelcomeLayout
-      renderImage={<Image src={ImgWelcome} priority className="rounded-xl w-full h-full object-cover" alt="Welcome to Tailor" />}
+      renderImage={
+        <Image
+          src={ImgWelcome}
+          priority
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="rounded-xl w-full h-full object-cover"
+          alt="Imagen de la página principal"
+        />
+      }
     >
       <div className='w-full rounded-xl bg-[#F1F1F0] p-6'>
         <div className='flex flex-col gap-12'>
@@ -23,7 +31,7 @@ export default function Page() {
             los restaurantes favoritos donde te gustaría ir en tu onboarding.
           </p>
           <div>
-            <Link href="login" className="text-lg xl:text-2xl font-semibold text-black px-6 py-3 border border-base rounded-lg hover:bg-base hover:text-[#F1F1F0] transition-all duration-300">Entrar</Link>
+            <Link href="login" className="text-lg xl:text-2xl font-semibold text-black px-6 py-3 border border-base rounded-lg hover:bg-black hover:bg-base hover:text-[#F1F1F0] transition-all duration-300">Entrar</Link>
             {/* <button className='text-white px-6 py-2 border border-white rounded-lg hover:text-primary hover:bg-white transition-all duration-300' type="submit">Entrar</button> */}
           </div>
         </div>
