@@ -1,5 +1,6 @@
 import { AxiosResponseHeaders } from "axios";
 import { Restaurant } from "./restaurant";
+import { Maybe } from "./helpers";
 
 export type ApiError = {
     message: string;
@@ -28,8 +29,15 @@ export type ApiPostComment = {
     rating: number;
 }
 
+type LatLng = {
+    lat: number;
+    lng: number;
+}
+
 export type ApiPostRestaurant = {
+    image: Maybe<any>;
     name: string;
     address: string;
     description: string;
+    latlng: LatLng;
 }

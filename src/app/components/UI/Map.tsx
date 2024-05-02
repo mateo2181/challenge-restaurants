@@ -10,7 +10,7 @@ const defaultMapContainerStyle = {
 };
 
 //Default zoom level, can be adjusted
-const defaultMapZoom = 17
+const defaultMapZoom = 16
 
 //Map options
 const defaultMapOptions = {

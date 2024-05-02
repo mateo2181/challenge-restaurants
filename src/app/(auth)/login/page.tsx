@@ -32,7 +32,6 @@ export default function Login() {
         e.preventDefault();
         login(formData)
             .then(user => {
-                console.log({ "Login OK": user });
                 router.push('/restaurants');
             })
             .catch(err => { });

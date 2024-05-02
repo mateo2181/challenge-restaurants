@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { apiGetRestaurantDetail, apiGetRestaurants, apiPostReview } from "@/api/restaurant";
-import { ApiGetRestaurantsParams, ApiPostComment, RestaurantList } from "@/types/api";
+import { apiGetRestaurantDetail, apiGetRestaurants, apiPostRestaurant, apiPostReview } from "@/api/restaurant";
+import { ApiGetRestaurantsParams, ApiPostComment, ApiPostRestaurant, RestaurantList } from "@/types/api";
 import { Maybe } from "@/types/helpers";
 import { Restaurant, RestaurantDetail } from "@/types/restaurant";
 
@@ -15,6 +15,9 @@ type RestaurantContext = {
     isPostingComment: boolean;
     errorPostingComment: Maybe<string>;
     postReview: (id: string, form: ApiPostComment) => Promise<string | Error>;
+    isCreatingRestaurant: boolean;
+    errorCreatingRestaurant: Maybe<string>;
+    createRestaurant: (form: ApiPostRestaurant) => Promise<string | Error>;
 };
 
 const RestaurantContext = createContext<Maybe<RestaurantContext>>(null);
@@ -26,6 +29,8 @@ export function RestaurantsProvider({ children }: { children: React.ReactNode })
     const [loading, setLoading] = useState<boolean>(false);
     const [isPostingComment, setIsPostingComment] = useState<boolean>(false);
     const [errorPostingComment, setErrorPostingComment] = useState<Maybe<string>>(null);
+    const [isCreatingRestaurant, setIsCreatingRestaurant] = useState<boolean>(false);
+    const [errorCreatingRestaurant, setErrorCreatingRestaurant] = useState<Maybe<string>>(null);
 
 
     const getRestaurants = async ({ limit, page }: ApiGetRestaurantsParams) => {
@@ -73,6 +78,21 @@ export function RestaurantsProvider({ children }: { children: React.ReactNode })
         }
     }
 
+    const createRestaurant = async (form: ApiPostRestaurant) => {
+        setErrorCreatingRestaurant(null);
+        try {
+            setIsCreatingRestaurant(true);
+            const data = await apiPostRestaurant(form);
+            return data;
+        } catch (err) {
+            const message = (err as Error).message;
+            setErrorCreatingRestaurant(message);
+            throw err;
+        } finally {
+            setIsCreatingRestaurant(false);
+        }
+    }
+
     return (
         <RestaurantContext.Provider value={{
             restaurants,
@@ -82,7 +102,10 @@ export function RestaurantsProvider({ children }: { children: React.ReactNode })
             getRestaurantDetail,
             isPostingComment,
             errorPostingComment,
-            postReview
+            postReview,
+            isCreatingRestaurant,
+            errorCreatingRestaurant,
+            createRestaurant,
         }}>
             {children}
         </RestaurantContext.Provider>
