@@ -1,4 +1,6 @@
-This is a challenge resolved with:
+## Description
+
+This is a challenge where we show restaurants consuming and API Rest. It was implemented with:
 - Next 14
 - TailwindCSS
 - React Context
@@ -13,3 +15,8 @@ This is a challenge resolved with:
 3. Run the development server: ```npm run dev```
 
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
+## Pending
+- Unit and end to end tests.
+- CRUD for restaurants.
