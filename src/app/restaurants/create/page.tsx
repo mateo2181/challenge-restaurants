@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Autocomplete from "react-google-autocomplete";
 import ImgLogoBlue from '@/assets/img_logo_blue.svg';
-import { CustomButton, CustomInput, Loading } from '@/app/components/UI';
+import { CustomInput, Loading } from '@/app/components/UI';
 import isAuth from '@/app/components/auth/isAuth';
 import { ApiPostRestaurant } from '@/types/api';
 import { IoCloudUploadOutline } from 'react-icons/io5';

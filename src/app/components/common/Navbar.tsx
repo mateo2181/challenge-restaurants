@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -29,7 +29,7 @@ export default function Navbar() {
 
 	if (!isClient) {
 		return (
-			<div>Loading...</div>
+			<div></div>
 		)
 	}
 

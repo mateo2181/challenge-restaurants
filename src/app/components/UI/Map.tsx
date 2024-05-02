@@ -67,4 +67,4 @@ export default function Map({ restaurants, activeRestaurant }: MapProps) {
             </GoogleMap>
         </div>
     )
-};
+}

@@ -1,10 +1,7 @@
-import Image from 'next/image'
-import React, { SVGProps } from 'react'
-
-type TSVGElementProps = SVGProps<SVGSVGElement>
+import React from 'react';
 
 type LayoutProps = {
-    renderImage: any;
+    renderImage: React.JSX.Element;
     children: React.ReactNode
 }
 

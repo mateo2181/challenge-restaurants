@@ -35,7 +35,7 @@ type LatLng = {
 }
 
 export type ApiPostRestaurant = {
-    image: Maybe<any>;
+    image: Maybe<File>;
     name: string;
     address: string;
     description: string;

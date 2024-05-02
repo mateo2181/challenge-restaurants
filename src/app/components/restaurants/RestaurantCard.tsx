@@ -11,7 +11,7 @@ export default function RestaurantCard({ children, ...rest }: Props) {
     return (
         <div {...rest}>{children}</div>
     )
-};
+}
 
 type CardImageProps = {
     src: string;

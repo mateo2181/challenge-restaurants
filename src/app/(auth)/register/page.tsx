@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useAuthContext } from '@/context/AuthContext';
-import { NewUserCredentials, UserCredentials } from '@/types/user';
+import { NewUserCredentials } from '@/types/user';
 import ImgRegister from '@/assets/img_signup.svg';
 import ImgLogo from '@/assets/img_logo.svg';
 import { CustomInput, CustomButton, WelcomeLayout } from '@/app/components/UI';
@@ -17,7 +17,7 @@ export default function Register() {
 
   const [page, setPage] = useState<1 | 2>(1);
 
-  const { signup, errorSignUp, loading, user } = useAuthContext();
+  const { signup, errorSignUp, loading } = useAuthContext();
   const [formData, setFormData] = useState<NewUserCredentials>({
     name: '',
     email: '',
@@ -41,10 +41,10 @@ export default function Register() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     signup(formData)
-      .then(data => {
+      .then(() => {
         router.push('/login');
       })
-      .catch(err => { });
+      .catch(() => { });
   };
 
   return (
@@ -110,4 +110,4 @@ export default function Register() {
       </div>
     </WelcomeLayout>
   );
-};
+}

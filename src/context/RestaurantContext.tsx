@@ -37,7 +37,7 @@ export function RestaurantsProvider({ children }: { children: React.ReactNode })
         try {
             setLoading(true);
             const data = await apiGetRestaurants({ limit, page }) as RestaurantList;
-            setRestaurants(prev => [...data.restaurantList]);
+            setRestaurants([...data.restaurantList]);
             return data.restaurantList;
         } catch (err) {
             const message = (err as Error).message;

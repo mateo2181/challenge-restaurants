@@ -14,7 +14,11 @@ export default function Restaurants() {
 
     const router = useRouter();
 
-    const [queryParams, setQueryParams] = useState<ApiGetRestaurantsParams>({
+    /*
+       setQueryParams was remove because was not being used.
+       It should be added once infinite scrolling is implemented to load new restaurants.
+    */
+    const [queryParams] = useState<ApiGetRestaurantsParams>({
         page: 1,
         limit: 10
     });
@@ -25,8 +29,6 @@ export default function Restaurants() {
 
     const refsArray = useRef<Array<null | HTMLDivElement>>([]);
     const containerRef = useRef<null | HTMLDivElement>(null);
-
-    let activeRestaurantRef = 0;
 
     useEffect(() => {
         getRestaurants({ ...queryParams });
@@ -80,7 +82,7 @@ export default function Restaurants() {
                     {restaurants.map((restaurant, index) => (
                         <div className={`snap-center shrink-0 w-[300px] rounded-xl overflow-hidden cursor-pointer
                                      ${activeRestaurant?._id === restaurant._id && 'shadow-lg'}`}
-                            onClick={e => centerElement(restaurant, index)}
+                            onClick={() => centerElement(restaurant, index)}
                             ref={ref => { refsArray.current[index] = ref; }}
                             key={restaurant._id}>
                             <RestaurantCard

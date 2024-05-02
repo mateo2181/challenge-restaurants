@@ -6,7 +6,7 @@ function getItem(key: string) {
     return null;
   }
   
-  function setItem({ key, value }: { key: string; value: any }) {
+  function setItem({ key, value }: { key: string; value: object | string | RegExpExecArray | null }) {
     localStorage.setItem(key, JSON.stringify(value));
   }
   

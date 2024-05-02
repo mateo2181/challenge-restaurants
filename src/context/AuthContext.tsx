@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState } from "react";
 import { apiLogin, apiSignup } from "@/api/auth";
-import { ApiError, ApiResponse } from "@/types/api";
+import { ApiResponse } from "@/types/api";
 import { Maybe } from "@/types/helpers";
 import { NewUserCredentials, UserCredentials, UserLogged } from "@/types/user";
 import { getItem, removeItem, setItem } from '@/utils/local-storage';
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     const logout = (): Promise<boolean> => {
-        return new Promise(async resolve => {
+        return new Promise(resolve => {
             setUser(null);
             removeItem({ key: 'user' });
             removeItem({ key: 'token' });

@@ -2,9 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { useRestaurantContext } from '@/context/RestaurantContext';
-import { CustomButton, CustomInput, Loading } from '@/app/components/UI';
+import { Loading } from '@/app/components/UI';
 import { Rating as ReactRating, Star } from '@smastrom/react-rating';
 import { RestaurantDetail as RestaurantDetailType } from '@/types/restaurant';
 import { Maybe } from '@/types/helpers';
@@ -18,8 +17,6 @@ type Props = {
 
 export default function RestaurantDetail({ params }: Props) {
 
-    const router = useRouter();
-
     const [rating, setRating] = useState<number>(0);
     const [comment, setComment] = useState<string>('');
     const [restaurant, setRestaurant] = useState<Maybe<RestaurantDetailType>>(null);
@@ -31,6 +28,7 @@ export default function RestaurantDetail({ params }: Props) {
             const data = await getRestaurantDetail(params.id);
             setRestaurant(data as RestaurantDetailType);
         } catch(err) {
+            console.log(err);
         }
     }, [params.id])
 

@@ -1,5 +1,5 @@
 import { client, clientWithAuth } from "@/api/client";
-import { ApiError, ApiGetRestaurantsParams, ApiPostComment, ApiPostRestaurant, ApiResponse, RestaurantList } from "@/types/api";
+import { ApiError, ApiGetRestaurantsParams, ApiPostComment, ApiPostRestaurant, RestaurantList } from "@/types/api";
 import { RestaurantDetail } from "@/types/restaurant";
 
 const apiGetRestaurants = ({ limit, page }: ApiGetRestaurantsParams): Promise<RestaurantList | Error> => {
@@ -28,7 +28,7 @@ const apiPostReview = (id: string, form: ApiPostComment): Promise<string | Error
 
 const apiPostRestaurant = (form: ApiPostRestaurant): Promise<string | Error> => {
     const dataForm = new FormData();
-    dataForm.append('image', form.image);
+    dataForm.append('image', form.image || '');
     dataForm.append('name', form.name);
     dataForm.append('description', form.description);
     dataForm.append('address', form.address);

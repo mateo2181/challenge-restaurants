@@ -14,7 +14,7 @@ export default function Login() {
 
     const router = useRouter();
 
-    const { login, errorLogin, loading, user } = useAuthContext();
+    const { login, errorLogin, loading } = useAuthContext();
     const [formData, setFormData] = useState<UserCredentials>({
         email: '',
         password: '',
@@ -31,10 +31,10 @@ export default function Login() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         login(formData)
-            .then(user => {
+            .then(() => {
                 router.push('/restaurants');
             })
-            .catch(err => { });
+            .catch(() => { });
     };
 
     return (
@@ -77,4 +77,4 @@ export default function Login() {
             </div>
         </WelcomeLayout>
     );
-};
+}

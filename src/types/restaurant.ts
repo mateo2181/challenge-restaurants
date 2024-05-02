@@ -12,7 +12,7 @@ export type Restaurant = {
     latlng: Coordinates,
     name: string;
     owner: string;
-    reviews: Array<any>;
+    reviews: Array<Review>;
     createdAt: string;
     updatedAt: string;
 

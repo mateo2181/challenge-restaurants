@@ -4,9 +4,8 @@ import { useEffect } from "react";
 import { redirect } from "next/navigation";
 import { useAuthContext } from "@/context/AuthContext";
 
-
 export default function isAuth(Component: React.FC) {
-	return function IsAuth(props: any) {
+	return function IsAuth() {
 		const { isUserAuthenticated } = useAuthContext();
 
 
@@ -16,6 +15,6 @@ export default function isAuth(Component: React.FC) {
 			}
 		}, [isUserAuthenticated]);
 
-		return <Component {...props} />;
+		return <Component />;
 	};
 }
