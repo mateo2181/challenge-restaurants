@@ -21,10 +21,10 @@ export default function Restaurants() {
 
     const [activeRestaurant, setActiveRestaurant] = useState<Maybe<Restaurant>>(null);
     const { getRestaurants, restaurants, loading } = useRestaurantContext();
+    const [windowHeight, setWindowHeight] = useState(0);
 
     const refsArray = useRef<Array<null | HTMLDivElement>>([]);
     const containerRef = useRef<null | HTMLDivElement>(null);
-    const wrapperRef = useRef<null | HTMLDivElement>(null);
 
     let activeRestaurantRef = 0;
 
@@ -32,48 +32,10 @@ export default function Restaurants() {
         getRestaurants({ ...queryParams });
     }, [queryParams]);
 
-    // useEffect(() => {
-    //     let refToCleanUp = containerRef.current;
-    //     if (containerRef.current) {
-    //         containerRef.current.addEventListener("scrollend", findActiveElement);
-    //     }
-    //     return () => {
-    //         refToCleanUp && refToCleanUp.removeEventListener("scrollend", findActiveElement)
-    //     };
-    // }, [containerRef]);
+    useEffect(() => {
+        setWindowHeight((window.innerHeight > 400) ? (window.innerHeight) : 400);
+    }, []);
 
-
-    // const containerScroll = (event: React.UIEvent<HTMLDivElement>) => {
-    //     console.log(event);
-    // }
-
-
-    const findActiveElement = (event: Event) => {
-        if (event) {
-            // const scrollRect = containerRef.current.getBoundingClientRect();
-            const middleScreen = (event.target as HTMLElement).offsetWidth / 2;
-            refsArray.current.forEach((ref, index) => {
-                console.log(index);
-                if (ref) {
-                    const { left, right } = ref?.getBoundingClientRect();
-                    console.log({ left, right });
-                    if (left < middleScreen && middleScreen < right) {
-                        activeRestaurantRef = index;
-                        // return true;
-                    }
-                }
-            });
-        }
-    };
-
-    // const centerActiveItem = (activeR: HTMLDivElement) => {
-    //     if (containerRef.current) {
-    //         const scrollRect = containerRef.current.getBoundingClientRect();
-    //         const activeRect = activeR.getBoundingClientRect();
-    //         containerRef.current.scrollLeft = activeRect.left - scrollRect.left - (scrollRect.width / 2) + (activeRect.width / 2);
-    //         console.log(scrollRect);
-    //     }
-    // };
     const markRestaurantAsActive = (restaurant: Restaurant, index: number) => {
         setActiveRestaurant(restaurant);
         const activeR = refsArray.current[index] as HTMLDivElement;
@@ -93,7 +55,6 @@ export default function Restaurants() {
 
     };
 
-    const windowHeight = (window.innerHeight > 400) ? (window.innerHeight) : 400;
 
     if (loading) {
         return (
@@ -104,7 +65,7 @@ export default function Restaurants() {
     }
 
     return (
-        <div ref={wrapperRef} className='relative' style={{ height: `${windowHeight - 150}px` }}>
+        <div className='relative' style={{ height: `${windowHeight - 120}px` }}>
             <div className='w-full rounded-xl relative' style={{ height: `${windowHeight - 300}px` }}>
                 <MapProvider>
                     <Map restaurants={restaurants} activeRestaurant={activeRestaurant} />

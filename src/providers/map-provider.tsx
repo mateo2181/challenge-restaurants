@@ -10,14 +10,20 @@ const libraries = ['marker', 'places', 'drawing', 'geometry'];
 export function MapProvider({ children }: { children: ReactNode }) {
 
   // Load the Google Maps JavaScript API asynchronously
-  const { isLoaded: scriptLoaded, loadError } = useJsApiLoader({
+  const { isLoaded, loadError } = useJsApiLoader({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAP_API as string,
     libraries: libraries as Libraries,
   });
 
-  if(loadError) return <p>Encountered error while loading google maps</p>
+  if (loadError) return <p>Encountered error while loading google maps</p>
 
-  if(!scriptLoaded) return <p></p>
+  if (!isLoaded) {
+    return (
+      <div className='flex justify-center items-center min-h-72'>
+        Loading map...
+      </div>
+    )
+  }
 
   // Return the children prop wrapped by this MapProvider component
   return children;

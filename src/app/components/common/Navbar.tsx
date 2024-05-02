@@ -37,7 +37,7 @@ export default function Navbar() {
 
 	return (
 		<header className='p-6'>
-			<nav className='flex gap-6 items-center justify-between'>
+			<nav className='flex gap-2 items-center justify-between'>
 				<div className='flex gap-4 md:gap-12 items-center'>
 					<h1>
 						<Image width={200} height={0} src={ImgLogo} alt="Tailor Logo" priority />
@@ -48,18 +48,18 @@ export default function Navbar() {
 				</div>
 				<div>
 					{!user ?
-						<Link className='p-2 text-lg hover:text-primary font-semibold px-6 py-3 rounded-xl border border-black' href="/login">Iniciar sesión</Link>
+						<Link className='p-2 md:text-lg hover:text-primary font-semibold px-6 py-3 rounded-xl border border-black' href="/login">Iniciar sesión</Link>
 						:
 						<Menu as="div" className="z-50 relative inline-block text-left">
 							{({ open }) => (
 								<>
 									<div>
-										<Menu.Button className="inline-flex w-full items-center justify-center text-lg px-4 py-2 font-semibold hover:text-primary focus:outline-none">
+										<Menu.Button className="inline-flex w-full items-center justify-center md:text-lg py-2 font-semibold hover:text-primary focus:outline-none">
 											{user?.name}
 											{open ?
-												<GoArrowUp className="ml-2 h-5 w-5 text-black hover:text-primary" aria-hidden="true" />
+												<GoArrowUp className="ml-1 h-5 w-5 text-black hover:text-primary" aria-hidden="true" />
 												:
-												<GoArrowDown className="ml-2 h-5 w-5 text-black hover:text-primary" aria-hidden="true" />
+												<GoArrowDown className="ml-1 h-5 w-5 text-black hover:text-primary" aria-hidden="true" />
 											}
 										</Menu.Button>
 									</div>

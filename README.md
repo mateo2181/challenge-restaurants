@@ -18,5 +18,8 @@ This is a challenge where we show restaurants consuming and API Rest. It was imp
 
 
 ## Pending
+- Use refresh token when the token expires. Do it with an axios interceptor.
 - Unit and end to end tests.
+- Pagination in restaurants list using infinite scrolling.
 - CRUD for restaurants.
+- Update cards in `/restaurants` page to match the design.
