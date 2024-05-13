@@ -4,6 +4,7 @@ import { RestaurantsProvider } from '@/context/RestaurantContext';
 import { AuthProvider } from "@/context/AuthContext";
 import "./globals.css";
 import '@smastrom/react-rating/style.css';
+import { StrictMode } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,11 +17,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <RestaurantsProvider>
-            {children}
-          </RestaurantsProvider>
-        </AuthProvider>
+        <StrictMode>
+          <AuthProvider>
+            <RestaurantsProvider>
+              {children}
+            </RestaurantsProvider>
+          </AuthProvider>
+        </StrictMode>
       </body>
     </html>
   );

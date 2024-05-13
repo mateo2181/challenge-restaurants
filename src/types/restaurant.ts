@@ -27,7 +27,7 @@ export type Review = {
     comment: string;
     rating: number;
     owner: UserReview;
-    data: string;
+    date: string;
 }
 
 export type RestaurantDetail = Restaurant & {
