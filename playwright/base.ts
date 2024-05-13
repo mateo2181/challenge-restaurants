@@ -1,8 +1,11 @@
 import { test as base, expect } from '@playwright/test';
 
+interface Page {
+    page: any
+}
 // This new "test" can be used in multiple test files, and each of them will get the fixtures.
 export const test = base.extend<{ page: void }>({
-    page: async ({ page }, use) => {
+    page: async ({ page }: Page, use: any) => {
 
         const errors: Array<Error> = [];
         page.addListener('pageerror', (error: any) => {

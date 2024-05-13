@@ -85,6 +85,7 @@ export function RestaurantsProvider({ children }: { children: React.ReactNode })
             const data = await apiPostRestaurant(form);
             return data;
         } catch (err) {
+            console.log(err);
             const message = (err as Error).message;
             setErrorCreatingRestaurant(message);
             throw err;

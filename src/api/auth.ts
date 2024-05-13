@@ -7,7 +7,7 @@ const apiLogin = (credentials: UserCredentials): Promise<ApiResponse<UserLogged>
     return client.post<UserCredentials, ApiResponse<UserLogged>>(
         '/auth/login',
         { ...credentials },
-        { headers: { "Content-Type": 'application/x-www-form-urlencoded' } })
+        { headers: { "Content-Type": 'application/x-www-form-urlencoded' }, withCredentials: true })
         .then(res => {
             return res;
         })

@@ -78,7 +78,6 @@ function CreateRestaurant() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log({ formData });
         createRestaurant(formData)
             .then(() => {
                 router.push('/restaurants/create/success');

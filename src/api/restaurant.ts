@@ -38,6 +38,7 @@ const apiPostRestaurant = (form: ApiPostRestaurant): Promise<string | Error> => 
     return clientWithAuth.post(`/restaurant/create`, dataForm)
         .then(res => res.data)
         .catch(err => {
+            console.log(err);
             throw new Error((err.response?.data as ApiError).message)
         });
 }
