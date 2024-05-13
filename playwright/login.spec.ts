@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './base';
 
 
 test('Login Page: should show an error when an user login with an unexisting account.', async ({ page }) => {

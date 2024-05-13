@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './base';
 
 test('Register page: new account is created correctly', async ({ page }) => {
   await page.goto('/register');
